@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Name · Robotics Research</title>
+<meta name="description" content="Personal academic website of Your Name, robotics researcher at IIT Gandhinagar.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Source+Serif+4:opsz,wght@8..60,500;8..60,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fbfaf8;
+    --surface: #ffffff;
+    --text: #1d1d1f;
+    --muted: #5f6368;
+    --border: #e6e3de;
+    --accent: #1f5f8b;
+    --accent-soft: #e8f0f6;
+    --max: 860px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #121416;
+      --surface: #1a1d20;
+      --text: #e8e6e3;
+      --muted: #9aa0a6;
+      --border: #2c3035;
+      --accent: #7fb6dd;
+      --accent-soft: #1d2a35;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.65 "Inter", system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  h1, h2, h3 { font-family: "Source Serif 4", Georgia, serif; font-weight: 600; line-height: 1.25; }
+  .wrap { max-width: var(--max); margin: 0 auto; padding: 0 20px; }
+
+  /* Nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 88%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 60px; gap: 16px; }
+  .brand { font-family: "Source Serif 4", serif; font-weight: 600; font-size: 18px; color: var(--text); white-space: nowrap; }
+  .links { display: flex; gap: 22px; overflow-x: auto; scrollbar-width: none; }
+  .links::-webkit-scrollbar { display: none; }
+  .links a { color: var(--muted); font-size: 14px; font-weight: 500; white-space: nowrap; }
+  .links a:hover { color: var(--text); text-decoration: none; }
+
+  /* Hero */
+  header.wrap { padding-top: 64px; padding-bottom: 48px; }
+  .hero { display: grid; grid-template-columns: 180px 1fr; gap: 40px; align-items: start; }
+  .photo {
+    width: 180px; height: 180px; border-radius: 50%;
+    background: var(--accent-soft); border: 1px solid var(--border);
+    display: grid; place-items: center; color: var(--accent);
+    font: 600 48px "Source Serif 4", serif; overflow: hidden;
+  }
+  .photo img { width: 100%; height: 100%; object-fit: cover; }
+  h1 { font-size: 40px; margin-bottom: 4px; }
+  .role { color: var(--muted); font-size: 17px; margin-bottom: 18px; }
+  .bio p + p { margin-top: 12px; }
+  .social { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+  .social a {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 6px 14px; border: 1px solid var(--border); border-radius: 999px;
+    font-size: 14px; font-weight: 500; color: var(--text); background: var(--surface);
+  }
+  .social a:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .social svg { width: 15px; height: 15px; fill: currentColor; }
+
+  /* Sections */
+  section { padding: 40px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 26px; margin-bottom: 20px; }
+  .tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { background: var(--accent-soft); color: var(--accent); padding: 4px 12px; border-radius: 6px; font-size: 14px; font-weight: 500; }
+
+  .news li { list-style: none; display: grid; grid-template-columns: 90px 1fr; gap: 16px; padding: 8px 0; }
+  .news .date { color: var(--muted); font-size: 14px; font-variant-numeric: tabular-nums; padding-top: 1px; }
+
+  .pub { padding: 16px 0; border-bottom: 1px dashed var(--border); }
+  .pub:last-child { border-bottom: 0; }
+  .pub h3 { font-size: 18px; margin-bottom: 4px; }
+  .pub .authors { font-size: 15px; }
+  .pub .authors b { font-weight: 600; }
+  .pub .venue { color: var(--muted); font-size: 14px; font-style: italic; }
+  .pub .plinks { margin-top: 6px; display: flex; gap: 8px; flex-wrap: wrap; }
+  .pub .plinks a { font-size: 12px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; border: 1px solid var(--border); padding: 2px 9px; border-radius: 4px; }
+
+  .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; }
+  .card .thumb { aspect-ratio: 16/9; background: var(--accent-soft); display: grid; place-items: center; color: var(--accent); font-size: 13px; font-weight: 500; }
+  .card .thumb img { width: 100%; height: 100%; object-fit: cover; }
+  .card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+  .card h3 { font-size: 18px; }
+  .card p { color: var(--muted); font-size: 15px; flex: 1; }
+  .card .tags .tag { font-size: 12px; padding: 2px 8px; }
+
+  .timeline li { list-style: none; display: grid; grid-template-columns: 1fr auto; gap: 4px 16px; padding: 12px 0; }
+  .timeline .what { font-weight: 600; }
+  .timeline .where { color: var(--muted); font-size: 15px; grid-column: 1; }
+  .timeline .when { color: var(--muted); font-size: 14px; grid-row: 1; grid-column: 2; font-variant-numeric: tabular-nums; }
+
+  footer { border-top: 1px solid var(--border); padding: 28px 0 48px; color: var(--muted); font-size: 14px; }
+
+  @media (max-width: 640px) {
+    header.wrap { padding-top: 40px; padding-bottom: 32px; }
+    .hero { grid-template-columns: 1fr; gap: 24px; }
+    .photo { width: 120px; height: 120px; font-size: 34px; }
+    h1 { font-size: 32px; }
+    .grid { grid-template-columns: 1fr; }
+    .news li { grid-template-columns: 1fr; gap: 0; }
+    .links { gap: 16px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#">Your Name</a>
+    <div class="links">
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="cv.pdf">CV</a>
+    </div>
+  </div>
+</nav>
+
+<header class="wrap">
+  <div class="hero">
+    <!-- Replace the initials with: <img src="photo.jpg" alt="Your Name"> -->
+    <div class="photo">YN</div>
+    <div>
+      <h1>Your Name</h1>
+      <div class="role">PhD Student, Robotics · IIT Gandhinagar</div>
+      <div class="bio">
+        <p>I am a researcher at the <a href="#">Robotics Lab</a>, Indian Institute of Technology Gandhinagar, advised by <a href="#">Prof. Advisor Name</a>. My work focuses on robot learning, manipulation, and control — building robots that act reliably in unstructured environments.</p>
+        <p>Previously, I completed my B.Tech in Mechanical Engineering at <a href="#">University Name</a>. I am open to research collaborations and internships.</p>
+      </div>
+      <div class="social">
+        <a href="mailto:you@iitgn.ac.in"><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zm0 4-8 5-8-5V6l8 5 8-5v2z"/></svg>Email</a>
+        <a href="https://github.com/yourusername"><svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.1c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .5z"/></svg>GitHub</a>
+        <a href="https://scholar.google.com/"><svg viewBox="0 0 24 24"><path d="M12 3 1 9l11 6 9-4.9V17h2V9L12 3zm-6.8 9.2V16l6.8 3.7 6.8-3.7v-3.8L12 16l-6.8-3.8z"/></svg>Scholar</a>
+        <a href="https://linkedin.com/in/yourusername"><svg viewBox="0 0 24 24"><path d="M20.4 2H3.6A1.6 1.6 0 0 0 2 3.6v16.8A1.6 1.6 0 0 0 3.6 22h16.8a1.6 1.6 0 0 0 1.6-1.6V3.6A1.6 1.6 0 0 0 20.4 2zM8 19H5V9.5h3V19zM6.5 8.2a1.7 1.7 0 1 1 0-3.5 1.7 1.7 0 0 1 0 3.5zM19 19h-3v-4.6c0-1.1 0-2.5-1.5-2.5s-1.8 1.2-1.8 2.4V19h-3V9.5h2.9v1.3a3.1 3.1 0 0 1 2.8-1.6c3 0 3.6 2 3.6 4.6V19z"/></svg>LinkedIn</a>
+        <a href="cv.pdf"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm4 18H6V4h7v5h5v11zM8 12h8v2H8v-2zm0 4h8v2H8v-2z"/></svg>CV</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section id="research">
+    <h2>Research Interests</h2>
+    <div class="tags">
+      <span class="tag">Robot Manipulation</span>
+      <span class="tag">Reinforcement Learning</span>
+      <span class="tag">Motion Planning</span>
+      <span class="tag">Control Systems</span>
+      <span class="tag">Computer Vision</span>
+      <span class="tag">Human–Robot Interaction</span>
+    </div>
+  </section>
+
+  <section id="news">
+    <h2>News</h2>
+    <ul class="news">
+      <li><span class="date">Sep 2026</span><span>Paper accepted at <b>Conference Name 2026</b>.</span></li>
+      <li><span class="date">Jun 2026</span><span>Started a research internship at <a href="#">Lab / Company</a>.</span></li>
+      <li><span class="date">Jan 2026</span><span>Presented a poster at <a href="#">Workshop Name</a>.</span></li>
+    </ul>
+  </section>
+
+  <section id="publications">
+    <h2>Publications</h2>
+    <div class="pub">
+      <h3>Title of Your First Paper on Robot Learning</h3>
+      <div class="authors"><b>Your Name</b>, Co-Author One, Advisor Name</div>
+      <div class="venue">Conference / Journal Name, 2026</div>
+      <div class="plinks"><a href="#">PDF</a><a href="#">Code</a><a href="#">Video</a><a href="#">BibTeX</a></div>
+    </div>
+    <div class="pub">
+      <h3>Title of Your Second Paper on Motion Planning</h3>
+      <div class="authors">Co-Author One, <b>Your Name</b>, Advisor Name</div>
+      <div class="venue">Workshop Name at Conference, 2025</div>
+      <div class="plinks"><a href="#">PDF</a><a href="#">arXiv</a></div>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="grid">
+      <article class="card">
+        <!-- Replace with: <div class="thumb"><img src="images/project1.jpg" alt=""></div> -->
+        <div class="thumb">Project image</div>
+        <div class="body">
+          <h3>Autonomous Mobile Robot</h3>
+          <p>SLAM and navigation stack for a differential-drive robot using ROS 2 and LiDAR.</p>
+          <div class="tags"><span class="tag">ROS 2</span><span class="tag">SLAM</span></div>
+          <a href="#">View on GitHub →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">Project image</div>
+        <div class="body">
+          <h3>Robotic Arm Pick-and-Place</h3>
+          <p>Vision-based grasping pipeline with a 6-DoF arm, trained in simulation and deployed on hardware.</p>
+          <div class="tags"><span class="tag">PyTorch</span><span class="tag">MuJoCo</span></div>
+          <a href="#">View on GitHub →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">Project image</div>
+        <div class="body">
+          <h3>Quadruped Locomotion</h3>
+          <p>Reinforcement learning controller for robust walking over uneven terrain.</p>
+          <div class="tags"><span class="tag">RL</span><span class="tag">Isaac Sim</span></div>
+          <a href="#">View on GitHub →</a>
+        </div>
+      </article>
+      <article class="card">
+        <div class="thumb">Project image</div>
+        <div class="body">
+          <h3>Drone Trajectory Tracking</h3>
+          <p>Model predictive control for agile quadrotor flight through gates.</p>
+          <div class="tags"><span class="tag">MPC</span><span class="tag">C++</span></div>
+          <a href="#">View on GitHub →</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="experience">
+    <h2>Education &amp; Experience</h2>
+    <ul class="timeline">
+      <li><span class="what">PhD in Robotics</span><span class="when">2024 – Present</span><span class="where">Indian Institute of Technology Gandhinagar</span></li>
+      <li><span class="what">Research Intern</span><span class="when">Summer 2023</span><span class="where">Lab or Company Name</span></li>
+      <li><span class="what">B.Tech in Mechanical Engineering</span><span class="when">2020 – 2024</span><span class="where">University Name</span></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">© 2026 Your Name · Last updated September 2026</div>
+</footer>
+
+</body>
+</html>
